@@ -1,9 +1,9 @@
 {
-  "name": "Start on Heroku: Python",
-  "description": "A barebones Python app, which can easily be deployed to Heroku.",
+  "name": "Green Tracker Analyzer",
+  "description": "Pyhon app",
   "image": "heroku/python",
-  "repository": "https://github.com/heroku/python-getting-started",
-  "keywords": ["python", "django" ],
+  "repository": "https://github.com/green-cani/green-cani-analyzer",
+  "keywords": ["python"],
   "addons": [ "heroku-postgresql" ],
   "env": {
     "SECRET_KEY": {
