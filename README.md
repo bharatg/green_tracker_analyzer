@@ -14,3 +14,6 @@ user=postgres
 password=postgres
 ```
 
+## Run with pipenv not pip
+to activate virtual shell use `pipenv shell`
+to leave `exit`
