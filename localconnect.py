@@ -14,15 +14,18 @@ def connect():
         conn = psycopg2.connect(**params)
 
         # create a cursor
-        cur = conn.cursor()
+        #cur_usr = conn.cursor()
+        cur_hab = conn.cursor()
 
- # execute a statement
-        print('PostgreSQL database version:')
-        cur.execute('SELECT version()')
+        # select users
+        cur_hab.execute("SELECT * FROM habits")
+        rows = cur.fetchall()
+        print('number of habits', cur.rowcount)
 
-        # display the PostgreSQL database server version
-        db_version = cur.fetchone()
-        print(db_version)
+        for row in rows:
+            print(row)
+
+
 
      # close the communication with the PostgreSQL
         cur.close()
