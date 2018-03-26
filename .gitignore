@@ -103,3 +103,6 @@ ENV/
 
 ## secret database
 database.ini
+
+# heroku files
+db.sqlite3

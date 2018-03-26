@@ -14,6 +14,21 @@ user=postgres
 password=postgres
 ```
 
-## Run with pipenv not pip
-to activate virtual shell use `pipenv shell`
-to leave `exit`
+## To install first time venv. `python` runs python 3
+```
+python -m venv venv
+```
+run the environment with 
+```
+source venv/bin/activate
+```
+install dependencies locally
+```
+pip install -r ./requirements.txt
+```
+run server
+```
+python manage.py runserver
+```
+
+https://devcenter.heroku.com/articles/django-memcache
