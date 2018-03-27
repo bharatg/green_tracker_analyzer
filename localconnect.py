@@ -18,17 +18,15 @@ def connect():
         cur_hab = conn.cursor()
 
         # select users
-        cur_hab.execute("SELECT * FROM habits")
-        rows = cur.fetchall()
-        print('number of habits', cur.rowcount)
-
-        for row in rows:
-            print(row)
+        cur_hab.execute("SELECT * FROM users")
+        rows = cur_hab.fetchall()
+        print('number of users', cur_hab.rowcount)
 
 
-
-     # close the communication with the PostgreSQL
-        cur.close()
+        # close the communication with the PostgreSQL
+        cur_hab.close()
+        print(rows)
+        return rows
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
     finally:
