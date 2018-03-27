@@ -31,4 +31,8 @@ run server
 python manage.py runserver
 ```
 
+#### Heroku docs on Django
 https://devcenter.heroku.com/articles/django-memcache
+
+#### Django guide
+https://docs.djangoproject.com/en/dev/intro/tutorial01/
