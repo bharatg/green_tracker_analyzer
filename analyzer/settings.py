@@ -26,8 +26,6 @@ SECRET_KEY = '$%7m9&+1ffr)sdvx7luw9sq&m=%d0$56uu@jusew!q)@v*wsc9'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # my apps
-    'simpletable',
+    'usertable.apps.UsertableConfig',
 ]
 
 MIDDLEWARE = [
@@ -74,12 +72,15 @@ WSGI_APPLICATION = 'analyzer.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
+import dj_database_url
+try:
+    import env
+    database_url = env.DATABASE_URL
+except EnvironmentError:
+    database_url = os.environ['DATABASE_URL']
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.parse(database_url)
 }
 
 
