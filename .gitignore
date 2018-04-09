@@ -80,7 +80,6 @@ celerybeat-schedule
 *.sage.py
 
 # dotenv
-.env
 env.py
 
 # virtualenv
@@ -171,3 +170,5 @@ flycheck_*.el
 # directory configuration
 .dir-locals.el
 
+# trash
+trash/

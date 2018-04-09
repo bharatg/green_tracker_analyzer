@@ -18,12 +18,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$%7m9&+1ffr)sdvx7luw9sq&m=%d0$56uu@jusew!q)@v*wsc9'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = []
 # Application definition
 
@@ -72,20 +66,35 @@ WSGI_APPLICATION = 'analyzer.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# Working locally
-# variables stored in env.py file
-import dj_database_url
+import environ
+root = environ.Path(__file__) - 1
+print("ENVIRON: ",root)
+env = environ.Env(DEBUG=(bool,False))
+environ.Env.read_env() # reading .env file
 
-try:
-    import env
-    database_url = env.DATABASE_URL
-except ImportError:
-    database_url = os.environ['DATABASE_URL']
+SITE_ROOT = root()
+
+DEBUG = env('DEBUG') # False if not in os.environ
+TEMPLATE_DEBUG = DEBUG
 
 DATABASES = {
-    'default': dj_database_url.parse(database_url)
+    'default': env.db() # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
+    #'extra': env.db('SQLITE_URL', default='sqlite:////tmp/my-tmp-sqlite.db')
 }
 
+public_root = root.path('public/')
+
+MEDIA_ROOT = public_root('media')
+MEDIA_URL = 'media/'
+STATIC_ROOT = public_root('static')
+STATIC_URL = 'static/' # Static files (CSS, JavaScript, Images)
+
+SECRET_KEY = env('SECRET_KEY') # Raises ImproperlyConfigured exception if SECRET_KEY not in os.environ
+
+# CACHES = {
+#     'default': env.cache(),
+#     'redis': env.cache('REDIS_URL')
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -120,10 +129,7 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
 
 # Configure Django App for Heroku.
 import django_heroku
