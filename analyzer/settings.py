@@ -79,7 +79,7 @@ import dj_database_url
 try:
     import env
     database_url = env.DATABASE_URL
-except EnvironmentError:
+except ImportError:
     database_url = os.environ['DATABASE_URL']
 
 DATABASES = {
