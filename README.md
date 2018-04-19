@@ -5,8 +5,9 @@
 [ ] - Setting up migrations
 [ ] - Decide where to show the statistics (push them on Telegram? Show them at some url in the django or the node site?)
 [ ] - Decide what and how to visualize it (which statistics to show, and the visualization design)
+[ ] - Cleanup in the repo. Remove what is unneeded.
 [ ] - Django minimal app (correctly set up app, at least index for / url)
-[ ] - Solving 'gunicorn' bug and making the app run on heroku
+[x] - Solving 'gunicorn' bug and making the app run on heroku
 [x] - Setting up correctly config variables on heroku
 [x] - Python app on heroku (working locally)
 
