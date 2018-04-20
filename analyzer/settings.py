@@ -68,7 +68,7 @@ WSGI_APPLICATION = 'analyzer.wsgi.application'
 
 import environ
 root = environ.Path(__file__) - 1
-print("ENVIRON: ",root)
+#print("ENVIRON: ",root)
 env = environ.Env(DEBUG=(bool,False))
 environ.Env.read_env() # reading .env file
 
