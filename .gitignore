@@ -3,6 +3,8 @@ first_setup.sh
 activate.sh
 config.py
 experiments/
+development_logs.txt
+settings_local.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
