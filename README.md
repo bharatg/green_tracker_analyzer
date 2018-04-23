@@ -9,7 +9,7 @@
 - [ ] Trying connection and queries on local ad remote database
 - [x] Setup local and remote database (used ignored settings_local.py and django-environ)
 - [x] Cleanup the repo. Remove what is unneeded. Ignore what must be ignored. Clear the cached files in heroku remote.
-- [ ] Django minimal app (correctly set up app, at least index for / url)
+- [x] Django minimal app (correctly set up app, at least index for / url)
 - [x] Solving 'gunicorn' bug and making the app run on heroku
 - [x] Setting up correctly config variables on heroku
 - [x] Python app on heroku (working locally)
