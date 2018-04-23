@@ -19,5 +19,4 @@ from django.urls import include, path
 urlpatterns = [
     path('usertable/', include('usertable.urls')),
     path('admin/', admin.site.urls),
-    #path('', analyzer.index, name='index'),
 ]
