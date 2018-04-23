@@ -129,13 +129,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# When running locally, overwrite some configuration settings
-# (i.e. use the local database)
-try:
-    from settings_local import *
-except ImportError:
-    pass
-
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
