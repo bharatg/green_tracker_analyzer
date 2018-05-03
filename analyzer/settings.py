@@ -68,7 +68,7 @@ WSGI_APPLICATION = 'analyzer.wsgi.application'
 
 import environ
 root = environ.Path(__file__) - 1
-print("ENVIRON: ",root)
+
 env = environ.Env(DEBUG=(bool,False))
 environ.Env.read_env() # reading .env file
 
@@ -81,8 +81,6 @@ DATABASES = {
     'default': env.db() # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
     #'extra': env.db('SQLITE_URL', default='sqlite:////tmp/my-tmp-sqlite.db')
 }
-
-print(DATABASES)
 
 public_root = root.path('public/')
 
