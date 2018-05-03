@@ -19,6 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 ALLOWED_HOSTS = ["localhost", "192.168.0.121", "127.0.0.1"]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -62,13 +63,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'analyzer.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 import environ
 root = environ.Path(__file__) - 1
-#print("ENVIRON: ",root)
+print("ENVIRON: ",root)
 env = environ.Env(DEBUG=(bool,False))
 environ.Env.read_env() # reading .env file
 
@@ -81,6 +81,8 @@ DATABASES = {
     'default': env.db() # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
     #'extra': env.db('SQLITE_URL', default='sqlite:////tmp/my-tmp-sqlite.db')
 }
+
+print(DATABASES)
 
 public_root = root.path('public/')
 
