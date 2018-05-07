@@ -1,5 +1,8 @@
 # TODO
 - [ ] Understand how can Telegram/node talk to the python app/dyno
+- [ ] Add foreign key to models
+- [ ] Understand choice_set
+- [ ] Add webpage with table "weekly.html" counting 
 - [ ] Write some tests (using some suitable python module)
 - [x] Landing page with django
 - [x] Setting up migrations
