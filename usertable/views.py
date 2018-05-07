@@ -12,3 +12,11 @@ def index(request):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
+
+def weekly(request):
+    last_week_list = Habit.query_all()
+    return HttpResponse("You're looking at the weekly view"+last_week_list)
+
+
+
+
