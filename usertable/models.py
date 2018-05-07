@@ -19,3 +19,6 @@ class Habit(models.Model):
 
     def __str__(self):
         return 'habit: ' + str(self.hab_choice) + ', id: ' + str(self.hab_id) + ', time: ' + str(self.hab_time)
+
+    def query_all(self):
+        return Habit.objects.all()
