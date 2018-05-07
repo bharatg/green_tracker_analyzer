@@ -9,8 +9,8 @@ class User(models.Model):
     def __str__(self):
         return 'user: ' + str(self.usr_name) + ', id: ' + str(self.usr_id)
 
-    def rndm():
-        return random.random()
+    def query_all(self):
+        return User.objects.all()
 
 class Habit(models.Model):
     hab_id     = models.IntegerField(default=0)
@@ -19,3 +19,6 @@ class Habit(models.Model):
 
     def __str__(self):
         return 'habit: ' + str(self.hab_choice) + ', id: ' + str(self.hab_id) + ', time: ' + str(self.hab_time)
+
+    def query_all(self):
+        return Habit.objects.all()
