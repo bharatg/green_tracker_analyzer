@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     # my apps
-    'usertable.apps.UsertableConfig',
+    'usertable',
 ]
 
 # dictionary with REST API configuration
