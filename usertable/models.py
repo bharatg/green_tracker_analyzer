@@ -1,24 +1,38 @@
 from django.db import models
 
+import datetime
 import random
 
 class User(models.Model):
-    usr_id   = models.IntegerField(default=0)
-    usr_name = models.CharField(max_length=200)
+    uid   = models.IntegerField(default=0, primary_key=True)
+    name = models.CharField(max_length=200, default='')
+    when_registered = models.DateTimeField(auto_now_add=True, default=datetime.datetime(2018,1,1))
 
     def __str__(self):
-        return 'user: ' + str(self.usr_name) + ', id: ' + str(self.usr_id)
+        return 'user: ' + str(self.name) + ', id: ' + str(self.id) + ', registered: ' + str(self.when_registered)
 
     def query_all(self):
         return User.objects.all()
 
 class Habit(models.Model):
-    hab_id     = models.IntegerField(default=0)
-    hab_time   = models.DateTimeField('date published')
-    hab_choice = models.CharField(max_length=200)
+    CHOICES = (
+        ('B', 'bici'),
+        ('P', 'piedi'),
+        ('M', 'macchina'),
+	('L', 'mezzi pubblici'),
+	('X', 'macchina e mezzi pubblici')
+    )
+
+    usr_id = models.ForeignKey(
+        'User',
+        on_delete=models.CASCADE,
+	default=0
+    )
+    time   = models.DateTimeField(default=datetime.datetime(2018,1,1))
+    choice = models.CharField(max_length=200, choices=CHOICES, default='L')
 
     def __str__(self):
-        return 'habit: ' + str(self.hab_choice) + ', id: ' + str(self.hab_id) + ', time: ' + str(self.hab_time)
+        return 'habit: ' + str(self.choice) + ', user: ' + str(self.usr_id) + ', time: ' + str(self.time)
 
     def query_all(self):
         return Habit.objects.all()
