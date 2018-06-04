@@ -16,7 +16,3 @@ class UserViewSet(viewsets.ModelViewSet):
 def weekly(request):
     last_week_list = Habit.query_all()
     return HttpResponse("You're looking at the weekly view"+last_week_list)
-
-
-
-
