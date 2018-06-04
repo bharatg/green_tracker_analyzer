@@ -21,14 +21,14 @@ class Habit(models.Model):
         ('B', 'bici'),
         ('P', 'piedi'),
         ('M', 'macchina'),
-	('L', 'mezzi pubblici'),
-	('X', 'macchina e mezzi pubblici')
+        ('L', 'mezzi pubblici'),
+        ('X', 'macchina e mezzi pubblici')
     )
 
     usr_id = models.ForeignKey(
         'User',
         on_delete=models.CASCADE,
-	default=0
+        default=0
     )
     time   = models.DateTimeField(auto_now_add=True)
     choice = models.CharField(max_length=200, choices=CHOICES, default='L')

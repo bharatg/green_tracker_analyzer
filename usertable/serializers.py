@@ -9,7 +9,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('uid','name','when_registered')
 
 
-class HabitSerializer(serializers.HyperlinkedModelSerializer):
+class HabitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hab
         fields = ('usr_id', 'time' , 'choice')
