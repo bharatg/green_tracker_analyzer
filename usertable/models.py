@@ -6,10 +6,10 @@ import random
 class User(models.Model):
     uid   = models.IntegerField(default=0, primary_key=True)
     name = models.CharField(max_length=200, default='')
-    when_registered = models.DateTimeField(auto_now_add=True, default=datetime.datetime(2018,1,1))
+    when_registered = models.DateTimeField(default=datetime.datetime(2018,1,1))
 
     def __str__(self):
-        return 'user: ' + str(self.name) + ', id: ' + str(self.id) + ', registered: ' + str(self.when_registered)
+        return 'user: ' + str(self.name) + ', id: ' + str(self.uid) + ', registered: ' + str(self.when_registered)
 
     def query_all(self):
         return User.objects.all()
