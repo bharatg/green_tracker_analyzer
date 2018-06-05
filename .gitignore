@@ -180,3 +180,6 @@ flycheck_*.el
 
 # trash
 trash/
+
+# nvm
+.nvmrc
