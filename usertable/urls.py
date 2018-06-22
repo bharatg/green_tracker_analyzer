@@ -5,6 +5,7 @@ from . import views
 
 from rest_framework import routers
 
+# routers handle the conventions for wiring up resources into views and urls
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'habits', views.HabitViewSet)
