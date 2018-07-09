@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from django.contrib.auth.models import User, Group
@@ -7,6 +7,9 @@ from rest_framework import viewsets
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from usertable.serializers import UserSerializer, HabitSerializer
+
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.response import Response
 
 from usertable.models import User as Usr
 from usertable.models import Habit as Hab
@@ -20,6 +23,9 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 @csrf_exempt
+@api_view(['GET', 'POST'])
+@authentication_classes([])
+@permission_classes([])
 def user_list(request):
     """
     List all code snippets, or create a new snippet.
@@ -27,17 +33,19 @@ def user_list(request):
     if request.method == 'GET':
         users = Usr.objects.all()
         serializer = UserSerializer(users, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        return Response(serializer.data, safe=False)
 
     elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = UserSerializer(data=data)
+        serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
-
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+        
 @csrf_exempt
+@api_view(['GET', 'POST'])
+@authentication_classes([])
+@permission_classes([])
 def user_detail(request, pk):
     """
     Retrieve, update or delete a code snippet.
@@ -49,15 +57,14 @@ def user_detail(request, pk):
 
     if request.method == 'GET':
         serializer = UserSerializer(user)
-        return JsonResponse(serializer.data)
+        return Response(serializer.data)
 
     elif request.method == 'PUT':
-        data = JSONParser().parse(request)
-        serializer = UserSerializer(user, data=data)
+        serializer = UserSerializer(user, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
 
     elif request.method == 'DELETE':
         user.delete()
@@ -68,6 +75,9 @@ class HabitViewSet(viewsets.ModelViewSet):
     serializer_class = HabitSerializer
 
 @csrf_exempt
+@api_view(['GET', 'POST'])
+@authentication_classes([])
+@permission_classes([])
 def habit_list(request):
     """
     List all code snippets, or create a new snippet.
@@ -75,17 +85,19 @@ def habit_list(request):
     if request.method == 'GET':
         habits = Hab.objects.all()
         serializer = HabitSerializer(habits, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        return Response(serializer.data, safe=False)
 
     elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = HabitSerializer(data=data)
+        serializer = HabitSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
 
 @csrf_exempt
+@api_view(['GET', 'POST'])
+@authentication_classes([])
+@permission_classes([])
 def habit_detail(request, pk):
     """
     Retrieve, update or delete a code snippet.
@@ -97,15 +109,14 @@ def habit_detail(request, pk):
 
     if request.method == 'GET':
         serializer = HabitSerializer(habit)
-        return JsonResponse(serializer.data)
+        return Response(serializer.data)
 
     elif request.method == 'PUT':
-        data = JSONParser().parse(request)
-        serializer = HabitSerializer(habit, data=data)
+        serializer = HabitSerializer(habit, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
 
     elif request.method == 'DELETE':
         habit.delete()
